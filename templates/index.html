@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% if get_locale() == 'zh' %}八字命理排盘系统，提供专业的四柱八字分析和 AI 命盘解读，探索你的性格、事业、财运和婚姻运势。{% else %}Bazi fortune analysis system, offering professional Four Pillars analysis and AI-driven destiny insights into your personality, career, wealth, and marriage.{% endif %}">
+    <meta name="keywords" content="{% if get_locale() == 'zh' %}八字命理, 四柱排盘, 生辰八字, AI 命理分析{% else %}Bazi analysis, Four Pillars, birth chart, AI destiny analysis{% endif %}">
+    <title>{% if get_locale() == 'zh' %}命理排盘系统{% else %}Destiny Analysis System{% endif %}</title>
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1744811073515831"
+     crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "{% if get_locale() == 'zh' %}七大命理系统{% else %}Seven Destiny Systems{% endif %}",
+        "url": "https://bon-turning-playlist-dividend.trycloudflare.com",
+        "description": "{% if get_locale() == 'zh' %}提供八字命理排盘和 AI 分析的服务，涵盖事业、财运、婚姻等。{% else %}Provides Bazi fortune analysis and AI-driven insights, covering career, wealth, marriage, and more.{% endif %}",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://bon-turning-playlist-dividend.trycloudflare.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+</head>
+
+<body class="bg-dark">
+    <div id="particle-background"></div>
+
+    <nav>{% include 'navbar.html' %}</nav>
+
+
+
+ <div class="icon-item d-inline-flex flex-column align-items-center mx-2" style="vertical-align: top; width: 120px;">
+
+    <img src="{{ url_for('static', filename='images/icons/Bazi_Analysis.png') }}"
+         alt="{% if get_locale() == 'zh' %}八字命理图标{% else %}Bazi Analysis Icon{% endif %}"
+         height="32" title="{% if get_locale() == 'zh' %}八字命理{% else %}Bazi Analysis{% endif %}">
+
+    <small class="icon-description mt-1"
+           data-bs-toggle="modal"
+           data-bs-target="#modalBazi"  style="cursor: pointer; text-align: center; font-size: 0.50em; line-height: 1.2; color: #ab22be;" title="{% if get_locale() == 'zh' %}查看详情{% else %}View Details{% endif %}">
+        {% if get_locale() == 'zh' %}
+        根据出生时间推算四柱八字，揭示五行喜忌与用神。
+        {% else %}
+        Calculates the Four Pillars based on birth time, revealing Five Elements preferences and beneficial elements.
+        {% endif %}
+    </small>
+    </div>
+
+    <div class="container py-4">
+        <form id="baziForm" method="POST" novalidate action="javascript:void(0)">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <div class="row align-items-center">
+                <div class="col-md-7">
+                    <h2 class="mb-4 text-center text-black">{% if get_locale() == 'zh' %}八字命理排盘{% else %}Bazi Fortune Analysis{% endif %}</h2>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label text-black">{% if get_locale() == 'zh' %}姓名{% else %}Name{% endif %}</label>
+                        <input type="text" id="name" class="form-control form-control-sm" required placeholder="{% if get_locale() == 'zh' %}请输入姓名{% else %}Enter your name{% endif %}">
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label text-black">{% if get_locale() == 'zh' %}出生地{% else %}Birthplace{% endif %}</label>
+                        <input type="text" id="location" class="form-control form-control-sm" required placeholder="{% if get_locale() == 'zh' %}如：槟城 / 台北{% else %}e.g., Penang / Taipei{% endif %}">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 mb-3">
+                            <label for="birth_date" class="form-label text-black">{% if get_locale() == 'zh' %}出生日期{% else %}Date of Birth{% endif %}</label>
+                            <input type="date" id="birth_date" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label for="birth_time" class="form-label text-black">{% if get_locale() == 'zh' %}出生时间{% else %}Time of Birth{% endif %}</label>
+                            <input type="time" id="birth_time" class="form-control form-control-sm" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label mb-1 text-black">{% if get_locale() == 'zh' %}性别{% else %}Gender{% endif %}</label><br/>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="男" checked>
+                            <label class="form-check-label text-black" for="male">{% if get_locale() == 'zh' %}男{% else %}Male{% endif %}</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="女">
+                            <label class="form-check-label text-black" for="female">{% if get_locale() == 'zh' %}女{% else %}Female{% endif %}</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-5 d-flex justify-content-center align-items-center p-3" id="rightButtonColumn">
+                    <button type="submit" id="submitBaziButton" class="btn p-0 border-0 crystal-ball">
+                        <img id="submitBaziImage" src="{{ url_for('static', filename='images/optimized/crystal-ball-01.webp') }}"
+                             alt="{% if get_locale() == 'zh' %}排盘{% else %}Analyze{% endif %}" width="250" height="250">
+                  </button>
+
+                <div id="aiButtonContainer" style="display: none;">
+                  <button class="btn d-inline-flex align-items-center glowing-btn" id="aiButton">
+                   <img id="aiButtonImage" width="180" height="180" style="display: block;" alt="{% if get_locale() == 'zh' %}五行精灵{% else %}Five Elements Sprite{% endif %}">
+                    <span class="ms-2">{% if get_locale() == 'zh' %}解读命盘{% else %}Analyze Destiny{% endif %}</span>
+                  </button>
+            </div>
+         </div>
+       </div>
+    </form>
+
+<div class="mt-4">
+    <h5 class="text-center text-black">{% if get_locale() == 'zh' %}排盘结果{% else %}Analysis Results{% endif %}</h5>
+    <div id="baziResultGrid" class="mt-3" aria-live="polite"></div>
+    <div id="aiAnalysisResultArea"></div>
+</div>
+
+    <div class="modal-body" id="aiResultContent">
+        <div class="d-flex justify-content-center align-items-center p-5">
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalFeedback" tabindex="-1" aria-labelledby="modalTitleLabel_Feedback" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleLabel_Feedback">{% if get_locale() == 'zh' %}提交您的反馈{% else %}Submit Your Feedback{% endif %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="feedbackForm">
+                        <div class="mb-3">
+                            <label for="feedbackName" class="form-label">{% if get_locale() == 'zh' %}姓名{% else %}Name{% endif %}</label>
+                            <input type="text" class="form-control" id="feedbackName" required placeholder="{% if get_locale() == 'zh' %}请输入您的姓名{% else %}Enter your name{% endif %}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="feedbackEmail" class="form-label">{% if get_locale() == 'zh' %}电子邮件{% else %}Email{% endif %}</label>
+                            <input type="email" class="form-control" id="feedbackEmail" required placeholder="{% if get_locale() == 'zh' %}请输入您的邮箱{% else %}Enter your email{% endif %}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="feedbackMessage" class="form-label">{% if get_locale() == 'zh' %}反馈内容{% else %}Feedback{% endif %}</label>
+                            <textarea class="form-control" id="feedbackMessage" rows="4" required placeholder="{% if get_locale() == 'zh' %}请分享您的意见或建议{% else %}Please share your comments or suggestions{% endif %}"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">{% if get_locale() == 'zh' %}提交{% else %}Submit{% endif %}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 清除保存资料按钮放在右上角 -->
+    <div class="clear-button-container">
+        <button id="clearUserDataButton" title="{% if get_locale() == 'zh' %}清除保存资料{% else %}Clear Saved Data{% endif %}">
+            <img src="/static/images/icons/clear_user_data.webp" width="24" height="24" alt="{% if get_locale() == 'zh' %}清除保存资料{% else %}Clear Saved Data{% endif %}" style="vertical-align: middle;">
+        </button>
+    </div>
+
+    </div> </div> <div class="container mt-4 mb-4"> <div class="row g-3"> <div class="col-md-6"> <div class="advertisement-slot affiliate-ad h-30" style="border: 1px dashed #ccc; padding: 15px; text-align: center;">
+                <h6 style="color: #ccc; margin-bottom: 10px;">推荐内容</h6> <a href="https://g.co/kgs/Ja1mkhu" target="_blank" rel="noopener sponsored">
+                     <img src="https://scontent.fsin15-2.fna.fbcdn.net/v/t39.30808-6/486662841_1140788907838701_1453740248276392684_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=21ZkbX4KvssQ7kNvwHzuKGA&_nc_oc=AdkmwPYkWOiZd3bTl_8I8MRgZudeIzxPD7fhLm0oef5EDJY6ijH0EifHOsr51fkuG7Y&_nc_zt=23&_nc_ht=scontent.fsin15-2.fna&_nc_gid=5yeJYTA102PfJGFIyJ0INA&oh=00_AfEiTlhSO4cjKRpOZ5XgIdlFYkU4eSeVUfpMoNMK-8etXQ&oe=681D8012" alt="美睫 纹绣 美容" style="max-width: 35%; height: auto; border: none;">
+                 </a>
+                 <p style="font-size: 0.7em; color: #aaa; margin-top: 8px; margin-bottom: 0;">广告</p>
+                </div>
+        </div>
+        <div class="col-md-6"> <div class="advertisement-slot adsense-ad h-100" style="border: 1px dashed #ccc; padding: 15px; text-align: center;">
+                 <h6 style="color: #ccc; margin-bottom: 10px;">赞助商链接</h6> <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1744811073515831"
+                     crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-1744811073515831"
+                     data-ad-slot="4117331640"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <p style="font-size: 0.7em; color: #aaa; margin-top: 8px; margin-bottom: 0;">广告</p>
+          </div>
+        </div>
+       </div> 
+      </div>
+
+
+    <div class="modal fade" id="modalBazi" tabindex="-1" aria-labelledby="modalTitleLabel_Bazi" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleLabel_Bazi">{% if get_locale() == 'zh' %}八字命理介绍{% else %}Introduction to Bazi Analysis{% endif %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{% if get_locale() == 'zh' %}八字命理，也称为四柱预测学，是中国传统命理学中最重要的一种。{% else %}Bazi analysis, also known as Four Pillars of Destiny, is one of the most important traditional Chinese fortune-telling methods.{% endif %}</p>
+                    <p>{% if get_locale() == 'zh' %}它基于一个人出生的年、月、日、时，分别对应年柱、月柱、日柱、时柱，每柱由一个天干和一个地支组成，共八个字，故称“八字”。{% else %}It is based on a person’s birth year, month, day, and hour, corresponding to the Year Pillar, Month Pillar, Day Pillar, and Hour Pillar, each consisting of a Heavenly Stem and an Earthly Branch, totaling eight characters, hence the name “Bazi.”{% endif %}</p>
+                    <p>{% if get_locale() == 'zh' %}通过分析这八个字的五行（金、木、水、火、土）属性、生克关系、十神（比肩、劫财、食神、伤官、偏财、正财、七杀、正官、偏印、正印）配置，以及大运、流年的影响，可以推断一个人的性格、格局层次、事业财运、感情婚姻、健康状况以及一生的运势起伏等。{% else %}By analyzing the Five Elements (Metal, Wood, Water, Fire, Earth) attributes, their interactions, the Ten Gods (Peer, Rob Wealth, Eating God, Hurting Officer, Indirect Wealth, Direct Wealth, Seven Killings, Direct Officer, Indirect Resource, Direct Resource) configurations, as well as the influence of major and annual cycles, one can infer a person’s personality, destiny level, career and wealth, relationships and marriage, health, and overall life fortunes.{% endif %}</p>
+                    <p>{% if get_locale() == 'zh' %}核心在于确定日干（代表命主自身）的旺衰，找出对命主有利的“喜用神”和不利的“忌神”，从而达到趋吉避凶的目的。{% else %}The core lies in determining the strength of the Day Stem (representing the person themselves), identifying the favorable “beneficial elements” and unfavorable “detrimental elements,” to achieve the goal of seeking fortune and avoiding misfortune.{% endif %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% if get_locale() == 'zh' %}关闭{% else %}Close{% endif %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const wuxingSprites = {
+            "金": "{{ url_for('static', filename='images/optimized/jing-metal-sprite.webp') }}",
+            "木": "{{ url_for('static', filename='images/optimized/jing-wood-sprite.webp') }}",
+            "水": "{{ url_for('static', filename='images/optimized/jing-water-sprite.webp') }}",
+            "火": "{{ url_for('static', filename='images/optimized/jing-fire-sprite.webp') }}",
+            "土": "{{ url_for('static', filename='images/optimized/jing-earth-sprite.webp') }}"
+        };
+    </script>
+
+    <script defer src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'938502b7f8276747',t:'MTc0NTk5NDgzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

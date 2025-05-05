@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2025-04-20\n"
+"Last-Translator: Your Name\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Aries"
+msgstr "Aries"
+
+msgid "Taurus"
+msgstr "Taurus"
+
+msgid "Gemini"
+msgstr "Gemini"
+
+msgid "Cancer"
+msgstr "Cancer"
+
+msgid "Leo"
+msgstr "Leo"
+
+msgid "Virgo"
+msgstr "Virgo"
+
+msgid "Libra"
+msgstr "Libra"
+
+msgid "Scorpio"
+msgstr "Scorpio"
+
+msgid "Sagittarius"
+msgstr "Sagittarius"
+
+msgid "Capricorn"
+msgstr "Capricorn"
+
+msgid "Aquarius"
+msgstr "Aquarius"
+
+msgid "Pisces"
+msgstr "Pisces"
+
+msgid "Unknown"
+msgstr "Unknown"
+
+msgid "鼠"
+msgstr "Rat"
+
+msgid "牛"
+msgstr "Ox"
+
+msgid "虎"
+msgstr "Tiger"
+
+msgid "兔"
+msgstr "Rabbit"
+
+msgid "龙"
+msgstr "Dragon"
+
+msgid "蛇"
+msgstr "Snake"
+
+msgid "马"
+msgstr "Horse"
+
+msgid "羊"
+msgstr "Goat"
+
+msgid "猴"
+msgstr "Monkey"
+
+msgid "鸡"
+msgstr "Rooster"
+
+msgid "狗"
+msgstr "Dog"
+
+msgid "猪"
+msgstr "Pig"

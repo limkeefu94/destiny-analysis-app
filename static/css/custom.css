@@ -1,0 +1,308 @@
+/* 确保页面高度 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background: #FFFAD6 !important;
+    position: relative;
+    min-height: 100vh;
+}
+
+.navbar {
+    z-index: 1000;
+}
+
+#baziForm {
+    position: relative;
+    z-index: 10;
+}
+
+/* 背景粒子容器 */
+#particle-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: #FFFAD6
+}
+
+/* 粒子样式 */
+.particle {
+    position: absolute !important;
+    top: -50px;
+    font-size: clamp(15px, 2vw, 20px);
+    opacity: 0.7;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: fall;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    will-change: top, opacity;
+}
+
+/* 子元素应用 sway 动画 */
+.sway-container {
+    animation-name: sway;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: sway;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+/* 飘落动画 */
+@keyframes fall {
+    0% {
+        top: -50px;
+        opacity: 0.7;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes fall {
+    0% {
+        top: -50px;
+        opacity: 0.7;
+    }
+    100% {
+        top: 100vh;
+        opacity: 0;
+    }
+}
+
+/* 左右摇摆动画 */
+@keyframes sway {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(20px);
+    }
+}
+@-webkit-keyframes sway {
+    0%, 100% {
+        -webkit-transform: translateX(0);
+    }
+    50% {
+        -webkit-transform: translateX(20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .clear-button-container {
+        top: 5px;
+        right: 5px;
+    }
+    #clearUserDataButton img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.clear-button-container {
+    position: static;
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* 水晶球按钮样式 */
+.crystal-ball {
+    transition: transform 0.3s ease, filter 0.3s ease;
+    animation: blink 2s infinite;
+    pointer-events: auto !important;
+}
+
+.crystal-ball:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2) drop-shadow(0 0 10px rgba(171, 34, 190, 0.8));
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* 解读命盘按钮样式 */
+.glowing-btn {
+    background: transparent;
+    border: 2px solid #4a0f52;
+    color: #4a0f52;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    animation: glow 1.5s infinite alternate;
+}
+
+#aiAnalysisResultArea {
+    white-space: pre-wrap;
+    border: 1px solid #ddd;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    font-size: 1rem;
+    line-height: 1.6;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    min-height: 100px; /* 确保有足够空间显示加载动画 */
+    position: relative; /* 确保加载动画定位正确 */
+}
+
+#aiAnalysisResultArea[style*="display: block"] {
+    opacity: 1 !important;
+    display: block !important; /* 强制显示 */
+    animation: resultGlow 1s ease-in-out
+}
+
+
+.loading-spinner {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    font-size: 1.1rem;
+    color: #6c3483;
+    display: flex !important;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0% { background-color: #f8f9fa; }
+    50% { background-color: #e0f7fa; }
+    100% { background-color: #f8f9fa; }
+}
+
+.loading-spinner .spinner-border {
+    width: 2rem;
+    height: 2rem;
+    border-width: 0.3em;
+}
+
+/* 添加淡入淡出效果 */
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+#loadingSpinner {
+    display: none; /* 默认隐藏 */
+}
+
+@keyframes resultGlow {
+    0% { background-color: #f8f9fa; }
+    50% { background-color: #e0f7fa; }
+    100% { background-color: #f8f9fa; }
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5),
+                    0 0 10px rgba(255, 255, 255, 0.3),
+                    0 0 15px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                    0 0 20px rgba(255, 255, 255, 0.5),
+                    0 0 30px rgba(255, 255, 255, 0.3);
+    }
+}
+
+.glowing-btn:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                0 0 25px rgba(255, 255, 255, 0.7),
+                0 0 35px rgba(255, 255, 255, 0.5);
+}
+
+#aiButtonImage {
+    transition: transform 0.3s ease;
+}
+
+.glowing-btn:hover #aiButtonImage {
+    transform: scale(1.05);
+}
+
+.glowing-金 {
+    animation: glow-metal 1.5s infinite alternate;
+}
+
+@keyframes glow-metal {
+    0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5), 0 0 10px rgba(255, 215, 0, 0.3), 0 0 15px rgba(255, 215, 0, 0.2); }
+    100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5), 0 0 30px rgba(255, 215, 0, 0.3); }
+}
+
+.glowing-木 {
+    animation: glow-wood 1.5s infinite alternate;
+}
+@keyframes glow-wood {
+    0% { box-shadow: 0 0 5px rgba(0, 128, 0, 0.5), 0 0 10px rgba(0, 128, 0, 0.3), 0 0 15px rgba(0, 128, 0, 0.2); }
+    100% { box-shadow: 0 0 10px rgba(0, 128, 0, 0.8), 0 0 20px rgba(0, 128, 0, 0.5), 0 0 30px rgba(0, 128, 0, 0.3); }
+}
+
+.glowing-水 {
+    animation: glow-water 1.5s infinite alternate;
+}
+@keyframes glow-water {
+    0% { box-shadow: 0 0 5px rgba(0, 191, 255, 0.5), 0 0 10px rgba(0, 191, 255, 0.3), 0 0 15px rgba(0, 191, 255, 0.2); }
+    100% { box-shadow: 0 0 10px rgba(0, 191, 255, 0.8), 0 0 20px rgba(0, 191, 255, 0.5), 0 0 30px rgba(0, 191, 255, 0.3); }
+}
+
+.glowing-火 {
+    animation: glow-fire 1.5s infinite alternate;
+}
+@keyframes glow-fire {
+    0% { box-shadow: 0 0 5px rgba(255, 69, 0, 0.5), 0 0 10px rgba(255, 69, 0, 0.3), 0 0 15px rgba(255, 69, 0, 0.2); }
+    100% { box-shadow: 0 0 10px rgba(255, 69, 0, 0.8), 0 0 20px rgba(255, 69, 0, 0.5), 0 0 30px rgba(255, 69, 0, 0.3); }
+}
+
+.glowing-土 {
+    animation: glow-earth 1.5s infinite alternate;
+}
+@keyframes glow-earth {
+    0% { box-shadow: 0 0 5px rgba(139, 69, 19, 0.5), 0 0 10px rgba(139, 69, 19, 0.3), 0 0 15px rgba(139, 69, 19, 0.2); }
+    100% { box-shadow: 0 0 10px rgba(139, 69, 19, 0.8), 0 0 20px rgba(139, 69, 19, 0.5), 0 0 30px rgba(139, 69, 19, 0.3); }
+}
+
+/* 五行颜色样式 */
+.wuxing-cell {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 12px;
+}
+
+.bg-gold {
+    background-color: #FFD700 !important;
+    color: #333;
+}
+
+.bg-wood {
+    background-color: #28A745 !important;
+    color: #fff;
+}
+
+.bg-water {
+    background-color: #17A2B8 !important;
+    color: #fff;
+}
+
+.bg-fire {
+    background-color: #DC3545 !important;
+    color: #fff;
+}
+
+.bg-earth {
+    background-color: #8B4513 !important;
+    color: #fff;
+}

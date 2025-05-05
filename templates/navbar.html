@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand d-inline-flex align-items-center" href="#">
+            <img src="{{ url_for('static', filename='images/optimized/navbar_logo_1.webp') }}" alt="Logo" width="30" height="30" class="d-inline-block align-middle me-2">
+            {% if get_locale() == 'zh' %}七大命理系统{% else %}Seven Destiny Systems{% endif %}
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+     <li class="nav-item">
+         <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" href="{{ url_for('index') }}">
+             {% if get_locale() == 'zh' %}八字命理{% else %}Bazi Analysis{% endif %}
+         </a>
+     </li>
+
+
+     <li class="nav-item">
+         <a class="nav-link {% if request.endpoint == 'ziwei_page' %}active{% endif %}" href="{{ url_for('ziwei_page') }}">
+             {% if get_locale() == 'zh' %}紫微斗数{% else %}Zi Wei Dou Shu{% endif %}
+         </a>
+     </li>
+
+     <li class="nav-item">
+         <a class="nav-link {% if request.endpoint == 'boneweight_page' %}active{% endif %}" href="{{ url_for('boneweight_page') }}">
+             {% if get_locale() == 'zh' %}称骨算命{% else %}Bone Weight Fortune{% endif %}
+         </a>
+     </li>
+
+     <li class="nav-item">
+         <a class="nav-link {% if request.endpoint == 'sanshi_page' %}active{% endif %}" href="{{ url_for('sanshi_page') }}">
+             {% if get_locale() == 'zh' %}三世书{% else %}Three Lives Book{% endif %}
+         </a>
+     </li>
+
+     <li class="nav-item">
+         <a class="nav-link {% if request.endpoint == 'shengxiao_page' %}active{% endif %}" href="{{ url_for('shengxiao_page') }}">
+             {% if get_locale() == 'zh' %}生肖命理{% else %}Zodiac Analysis{% endif %}
+         </a>
+     </li>
+
+     <li class="nav-item">
+         <a class="nav-link {% if request.endpoint == 'xingzuo_page' %}active{% endif %}" href="{{ url_for('xingzuo_page') }}">
+             {% if get_locale() == 'zh' %}星座分析{% else %}Astrology{% endif %}
+         </a>
+     </li>
+
+     <li class="nav-item">
+         <a class="nav-link {% if request.endpoint == 'xingxiu_page' %}active{% endif %}" href="{{ url_for('xingxiu_page') }}">
+             {% if get_locale() == 'zh' %}28星宿{% else %}28 Lunar Mansions{% endif %}
+         </a>
+     </li>
+ </ul>
+
+        <a href="#" class="nav-link p-2"  title="{% if get_locale() == 'zh' %}提交反馈{% else %}Submit Feedback{% endif %}"
+           data-bs-toggle="modal"
+           data-bs-target="#modalFeedback"> <img src="{{ url_for('static', filename='images/icons/Feedback.webp') }}" alt="{% if get_locale() == 'zh' %}用户反馈{% else %}User Feedback{% endif %}"
+                 height="30"> </a>
+            <select id="language" onchange="changeLanguage(this.value)">
+                <option value="zh" {% if get_locale() == 'zh' %}selected{% endif %}>中文</option>
+                <option value="en" {% if get_locale() == 'en' %}selected{% endif %}>English</option>
+            </select>
+
+        </div>
+    </div>
+</nav>

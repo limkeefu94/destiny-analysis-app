@@ -1,0 +1,22 @@
+# 虚拟环境
+venv/
+
+# 环境变量文件
+.env
+
+# 编译文件
+*.pyc
+*.pyo
+__pycache__/
+
+# Cloudflared 可执行文件
+cloudflared.exe
+
+# 日志文件
+*.log
+
+# 临时文件
+*.bat
+*.tmp
+
+database.db

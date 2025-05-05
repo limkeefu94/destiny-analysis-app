@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ system_name }} - {{ _('即将推出') if get_locale() == 'zh' else 'Coming Soon' }}</title>
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+</head>
+<body> {% include 'navbar.html' %}
+
+<div class="icon-item d-inline-flex flex-column align-items-center mx-2" style="vertical-align: top; width: 120px;">
+    <img src="{{ url_for('static', filename='images/icons/Three_Lives_Book.png') }}"
+         alt="{% if get_locale() == 'zh' %}三世书图标{% else %}Three Lives Book Icon{% endif %}"
+         height="50"
+         title="{% if get_locale() == 'zh' %}三世书{% else %}Three Lives Book{% endif %}">
+    <small class="icon-description mt-1"
+           data-bs-toggle="modal"
+           data-bs-target="#modalSanshi" style="cursor: pointer; text-align: center; font-size: 0.75em; line-height: 1.2; color: #ab22be;"
+           title="{% if get_locale() == 'zh' %}查看详情{% else %}View Details{% endif %}">
+        {% if get_locale() == 'zh' %}
+        结合前世、今生、来世视角，探索灵性与因果关系。
+        {% else %}
+        Explores spirituality and karma through past, present, and future lives.
+        {% endif %}
+    </small>
+  </div>
+
+    <div class="modal fade" id="modalSanshi" tabindex="-1" aria-labelledby="modalTitleLabel_Sanshi" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleLabel_Sanshi">{% if get_locale() == 'zh' %}三世书介绍{% else %}Introduction to Three Lives Book{% endif %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{% if get_locale() == 'zh' %}《三世书》是一本据说可以推演前世、今生、后世命运的神秘奇书，它结合了面相、手相、生辰八字等多种术数，着重于因果轮回和福报分析。{% else %}The Three Lives Book is a mystical text said to deduce destinies across past, present, and future lives, combining physiognomy, palmistry, Bazi, and other methods, focusing on karma and blessings analysis.{% endif %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% if get_locale() == 'zh' %}关闭{% else %}Close{% endif %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="container text-center my-5">
+        <h1>{{ system_name }}</h1>
+        <p class="lead">{% if get_locale() == 'zh' %}此功能正在开发中，敬请期待！{% else %}This feature is currently under development. Stay tuned!{% endif %}</p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">{% if get_locale() == 'zh' %}返回首页{% else %}Back to Home{% endif %}</a>
+    </div>
+
+    <script defer src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

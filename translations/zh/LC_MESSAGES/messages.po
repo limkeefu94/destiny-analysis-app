@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2025-04-20\n"
+"Last-Translator: Your Name\n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Aries"
+msgstr "白羊座"
+
+msgid "Taurus"
+msgstr "金牛座"
+
+msgid "Gemini"
+msgstr "双子座"
+
+msgid "Cancer"
+msgstr "巨蟹座"
+
+msgid "Leo"
+msgstr "狮子座"
+
+msgid "Virgo"
+msgstr "处女座"
+
+msgid "Libra"
+msgstr "天秤座"
+
+msgid "Scorpio"
+msgstr "天蝎座"
+
+msgid "Sagittarius"
+msgstr "射手座"
+
+msgid "Capricorn"
+msgstr "摩羯座"
+
+msgid "Aquarius"
+msgstr "水瓶座"
+
+msgid "Pisces"
+msgstr "双鱼座"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid "鼠"
+msgstr "鼠"
+
+msgid "牛"
+msgstr "牛"
+
+msgid "虎"
+msgstr "虎"
+
+msgid "兔"
+msgstr "兔"
+
+msgid "龙"
+msgstr "龙"
+
+msgid "蛇"
+msgstr "蛇"
+
+msgid "马"
+msgstr "马"
+
+msgid "羊"
+msgstr "羊"
+
+msgid "猴"
+msgstr "猴"
+
+msgid "鸡"
+msgstr "鸡"
+
+msgid "狗"
+msgstr "狗"
+
+msgid "猪"
+msgstr "猪"

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ system_name }} - {{ _('即将推出') if get_locale() == 'zh' else 'Coming Soon' }}</title>
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+</head>
+<body> 
+
+ <nav>{% include 'navbar.html' %}</nav>
+
+<div class="icon-item d-inline-flex flex-column align-items-center mx-2" style="vertical-align: top; width: 120px;">
+    <img src="{{ url_for('static', filename='images/icons/Zi_Wei_Dou_Shu.webp') }}"
+         alt="{% if get_locale() == 'zh' %}紫微斗数图标{% else %}Zi Wei Dou Shu Icon{% endif %}"
+         height="50"
+         title="{% if get_locale() == 'zh' %}紫微斗数{% else %}Zi Wei Dou Shu{% endif %}">
+    <small class="icon-description mt-1"
+           data-bs-toggle="modal"
+           data-bs-target="#modalZiwei" 
+           style="cursor: pointer; text-align: center; font-size: 0.75em; line-height: 1.2; color: #ab22be;"
+           title="{% if get_locale() == 'zh' %}查看详情{% else %}View Details{% endif %}">
+        {% if get_locale() == 'zh' %}
+        以命宫为核心，揭示人生12宫的星曜与运势结构。
+        {% else %}
+        Focuses on the Life Palace, revealing the structure of stars and destiny across 12 palaces.
+        {% endif %}
+    </small>
+  </div>
+ </div>
+
+    <div class="modal fade" id="modalZiwei" tabindex="-1" aria-labelledby="modalTitleLabel_Ziwei" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleLabel_Ziwei">{% if get_locale() == 'zh' %}紫微斗数介绍{% else %}Introduction to Zi Wei Dou Shu{% endif %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{% if get_locale() == 'zh' %}紫微斗数是中国传统命理学的重要流派之一，它以人出生的年月日时确定十二宫位置，构成命盘，结合各宫位的星曜组合，来预测一个人的命运格局、吉凶祸福。{% else %}Zi Wei Dou Shu is a significant branch of traditional Chinese fortune-telling. It determines the positions of the twelve palaces based on a person’s birth date and time, forming a destiny chart, and predicts a person’s fate, fortune, and misfortune by analyzing the combination of stars in each palace.{% endif %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% if get_locale() == 'zh' %}关闭{% else %}Close{% endif %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container text-center my-5">
+        <h1>{{ system_name }}</h1>
+        <p class="lead">{% if get_locale() == 'zh' %}此功能正在开发中，敬请期待！{% else %}This feature is currently under development. Stay tuned!{% endif %}</p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">{% if get_locale() == 'zh' %}返回首页{% else %}Back to Home{% endif %}</a>
+    </div>
+
+    <script defer src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

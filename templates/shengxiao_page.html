@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ system_name }} - {{ _('即将推出') if get_locale() == 'zh' else 'Coming Soon' }}</title>
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+</head>
+<body> {% include 'navbar.html' %}
+
+<div class="icon-item d-inline-flex flex-column align-items-center mx-2" style="vertical-align: top; width: 120px;">
+    <img src="{{ url_for('static', filename='images/icons/Zodiac_Analysis.png') }}"
+         alt="{% if get_locale() == 'zh' %}生肖命理图标{% else %}Zodiac Analysis Icon{% endif %}"
+         height="50"
+         title="{% if get_locale() == 'zh' %}生肖命理{% else %}Zodiac Analysis{% endif %}">
+    <small class="icon-description mt-1"
+           data-bs-toggle="modal"
+           data-bs-target="#modalShengxiao" style="cursor: pointer; text-align: center; font-size: 0.75em; line-height: 1.2; color: #ab22be;"
+           title="{% if get_locale() == 'zh' %}查看详情{% else %}View Details{% endif %}">
+        {% if get_locale() == 'zh' %}
+        从生肖角度看性格特质、婚配宜忌与流年起伏。
+        {% else %}
+        Analyzes personality, marriage compatibility, and yearly fortunes from the zodiac perspective.
+        {% endif %}
+    </small>
+  </div>
+
+    <div class="modal fade" id="modalShengxiao" tabindex="-1" aria-labelledby="modalTitleLabel_Shengxiao" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleLabel_Shengxiao">{% if get_locale() == 'zh' %}生肖命理介绍{% else %}Introduction to Zodiac Analysis{% endif %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{% if get_locale() == 'zh' %}生肖，又称属相，是中国及东亚地区用来代表年份的十二种动物。生肖命理主要根据一个人的出生年份所属生肖，来分析其性格特征、运势起伏、婚配宜忌等。{% else %}The Chinese zodiac, also known as Shengxiao, consists of twelve animals representing years in China and East Asia. Zodiac analysis primarily examines a person’s personality traits, fortune fluctuations, and marriage compatibility based on their birth year’s animal sign.{% endif %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% if get_locale() == 'zh' %}关闭{% else %}Close{% endif %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="container text-center my-5">
+        <h1>{{ system_name }}</h1>
+        <p class="lead">{% if get_locale() == 'zh' %}此功能正在开发中，敬请期待！{% else %}This feature is currently under development. Stay tuned!{% endif %}</p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">{% if get_locale() == 'zh' %}返回首页{% else %}Back to Home{% endif %}</a>
+    </div>
+
+    <script defer src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ system_name }} - {{ _('即将推出') if get_locale() == 'zh' else 'Coming Soon' }}</title>
+    <link href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+</head>
+<body> {% include 'navbar.html' %}
+
+<div class="icon-item d-inline-flex flex-column align-items-center mx-2" style="vertical-align: top; width: 120px;">
+    <img src="{{ url_for('static', filename='images/icons/28_Lunar_Mansions.png') }}"
+         alt="{% if get_locale() == 'zh' %}28星宿图标{% else %}28 Lunar Mansions Icon{% endif %}"
+         height="50"
+         title="{% if get_locale() == 'zh' %}28星宿{% else %}28 Lunar Mansions{% endif %}">
+    <small class="icon-description mt-1"
+           data-bs-toggle="modal"
+           data-bs-target="#modalXingxiu" style="cursor: pointer; text-align: center; font-size: 0.75em; line-height: 1.2; color: #ab22be;"
+           title="{% if get_locale() == 'zh' %}查看详情{% else %}View Details{% endif %}">
+        {% if get_locale() == 'zh' %}
+        依据农历宿位判断吉凶宜忌、事业运与婚配命格。
+        {% else %}
+        Determines fortune, career luck, and marriage compatibility based on lunar mansions.
+        {% endif %}
+    </small>
+  </div>
+
+    <div class="modal fade" id="modalXingxiu" tabindex="-1" aria-labelledby="modalTitleLabel_Xingxiu" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleLabel_Xingxiu">{% if get_locale() == 'zh' %}28星宿介绍{% else %}Introduction to 28 Lunar Mansions{% endif %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{% if get_locale() == 'zh' %}二十八星宿是中国古代天文学家为观测日、月、五星运行而划分的二十八个星区，用以判断时日吉凶。每一宿都有其独特的象征意义，可用于分析性格、预测运势、判断人际关系和婚配等。{% else %}The 28 Lunar Mansions are 28 star regions defined by ancient Chinese astronomers to observe the movements of the sun, moon, and five planets, used to determine auspicious and inauspicious timings. Each mansion has unique symbolic meanings and can be used to analyze personality, predict fortune, and assess relationships and marriage compatibility.{% endif %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% if get_locale() == 'zh' %}关闭{% else %}Close{% endif %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container text-center my-5">
+        <h1>{{ system_name }}</h1>
+        <p class="lead">{% if get_locale() == 'zh' %}此功能正在开发中，敬请期待！{% else %}This feature is currently under development. Stay tuned!{% endif %}</p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">{% if get_locale() == 'zh' %}返回首页{% else %}Back to Home{% endif %}</a>
+    </div>
+
+    <script defer src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
