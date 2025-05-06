@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(express.static('.')); // 提供静态文件（如 index.html）
+app.use(express.static('index.html')); // 提供静态文件（如 index.html）
 
 // 模拟 /calculate_bazi API
 app.post('/calculate_bazi', (req, res) => {
@@ -18,7 +18,7 @@ app.post('/calculate_bazi', (req, res) => {
 });
 
 // 模拟 /ai_analysis API
-app.post('/ai_analysis', (req, res) => {
+app.post('/destiny-analysis-app', (req, res) => {
     const userData = req.body;
     res.json({
         result: "这是一个示例 AI 分析结果。"
