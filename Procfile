@@ -1,1 +1,1 @@
-web: waitress-serve --host=0.0.0.0 --port=$PORT da7_simulated_ai_analysis:app
+web: waitress-serve --listen=*:$PORT da7_simulated_ai_analysis:app
