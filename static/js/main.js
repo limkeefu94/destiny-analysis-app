@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const feedbackForm = document.getElementById('feedbackForm');
     const clearUserDataButton = document.getElementById('clearUserDataButton');
     const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+    const adsenseContainer = document.getElementById('adsense-container');
 
 
     // 提前定义 getRandomWuxing 函数
