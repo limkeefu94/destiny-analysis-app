@@ -9,6 +9,7 @@ import sxtwl
 from flask_wtf.csrf import generate_csrf
 from database import init_db, save_feedback
 from flask import Response
+import stripe
 
 load_dotenv()
 
@@ -24,6 +25,7 @@ csrf = CSRFProtect(app)
 # 初始化数据库
 init_db()
 
+
 @app.route('/ads.txt')
 def ads_txt():
     # 把下面这行内容替换成 AdSense 提供给你的实际内容
@@ -32,7 +34,6 @@ def ads_txt():
 
 # 定义语言选择函数
 @babel.localeselector
-
 def get_locale():
     lang = request.cookies.get('language')
     if lang in ['zh', 'en']:
@@ -152,8 +153,6 @@ def index():
 
 @app.route("/ziwei") # 定义紫微斗数的URL路径
 def ziwei_page():
-    # 这里暂时先渲染一个简单的 "即将推出" 页面
-    # 你需要创建一个名为 coming_soon.html 的模板文件
     system_name = _("Zi Wei Dou Shu") if get_locale() == 'en' else "紫微斗数"
     return render_template("ziwei_page.html", system_name=system_name, get_locale=get_locale)
 
@@ -281,6 +280,33 @@ def ai_analysis():
     except Exception as e:
         print(f"调用 OpenAI API 时出错: {e}")
         return jsonify({"result": f"AI 分析失败：{str(e)}" if get_locale() == 'zh' else f"AI analysis failed: {str(e)}"})
+
+@app.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    try:
+        data = request.get_json()
+        amount = int(float(data['amount']) * 100)  # 将金额转换为美分（Stripe 使用美分为单位）
+
+        # 创建 Stripe Checkout 会话
+        session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': 'Donation',
+                    },
+                    'unit_amount': amount,
+                },
+                'quantity': 1,
+            }],
+            mode='payment',
+            success_url='https://destiny-analysis-app.onrender.com/?success=true',
+            cancel_url='https://destiny-analysis-app.onrender.com/?canceled=true',
+        )
+        return jsonify({'id': session.id})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/sitemap.xml')
 def sitemap():

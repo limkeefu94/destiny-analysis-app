@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearUserDataButton = document.getElementById('clearUserDataButton');
     const csrfToken = document.querySelector('input[name="csrf_token"]').value;
 
+
     // 提前定义 getRandomWuxing 函数
     const getRandomWuxing = () => {
         const wuxingElements = ["金", "木", "水", "火", "土"];
@@ -473,6 +474,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } else {
         console.error("clearUserDataButton not found in the DOM");
+    }
+
+    // “立即赞助”按钮事件监听器
+    if (donateNowButton) {
+        donateNowButton.addEventListener('click', () => {
+            // 直接跳转到预生成的 Stripe 支付 URL
+            window.location.href = 'https://buy.stripe.com/3cIfZgft7fv9dKIfXi6c001';
+        });
+    } else {
+        console.error("donateNowButton not found in the DOM");
     }
 
     window.changeLanguage = function(lang) {

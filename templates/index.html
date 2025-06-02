@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{ get_locale() }}">
 <head>
+
+<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% if get_locale() == 'zh' %}八字命理排盘系统，提供专业的四柱八字分析和 AI 命盘解读，探索你的性格、事业、财运和婚姻运势。{% else %}Bazi fortune analysis system, offering professional Four Pillars analysis and AI-driven destiny insights into your personality, career, wealth, and marriage.{% endif %}">
@@ -36,7 +39,7 @@
 
  <div class="icon-item d-inline-flex flex-column align-items-center mx-2" style="vertical-align: top; width: 120px;">
 
-    <img src="{{ url_for('static', filename='images/icons/Bazi_Analysis.png') }}"
+    <img src="{{ url_for('static', filename='images/icons/Bazi_Analysis.webp') }}"
          alt="{% if get_locale() == 'zh' %}八字命理图标{% else %}Bazi Analysis Icon{% endif %}"
          height="32" title="{% if get_locale() == 'zh' %}八字命理{% else %}Bazi Analysis{% endif %}">
 
@@ -147,28 +150,45 @@
         </div>
     </div>
 
+
     <!-- 清除保存资料按钮放在右上角 -->
     <div class="clear-button-container">
         <button id="clearUserDataButton" title="{% if get_locale() == 'zh' %}清除保存资料{% else %}Clear Saved Data{% endif %}">
-            <img src="/static/images/icons/clear_user_data.webp" width="24" height="24" alt="{% if get_locale() == 'zh' %}清除保存资料{% else %}Clear Saved Data{% endif %}" style="vertical-align: middle;">
+            <img src="/static/images/icons/clear_user_data.webp" width="30" height="30" alt="{% if get_locale() == 'zh' %}清除保存资料{% else %}Clear Saved Data{% endif %}" style="vertical-align: middle;">
         </button>
     </div>
 
-        <div class="col-md-6"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1744811073515831"
-     crossorigin="anonymous"></script>
+            <!-- 添加“随意赞助”按钮 -->
+            <div class="donation-button-container">
+                <button id="donationButton" title="{% if get_locale() == 'zh' %}随意赞助{% else %}Donate{% endif %}" data-bs-toggle="modal" data-bs-target="#modalDonation">
+                    <img src="/static/images/icons/donationAmount.webp" width="60" height="60" alt="{% if get_locale() == 'zh' %}随意赞助{% else %}Donate{% endif %}" style="vertical-align: middle;">
+                </button>
+            </div>
+        </div>
+        <!-- 赞助模态框（移除金额输入框，直接跳转） -->
+        <div class="modal fade" id="modalDonation" tabindex="-1" aria-labelledby="modalTitleLabel_Donation" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleLabel_Donation">{% if get_locale() == 'zh' %}支持我们{% else %}Support Us{% endif %}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{% if get_locale() == 'zh' %}感谢您的支持！点击下方按钮进行赞助：{% else %}Thank you for your support! Click the button below to donate:{% endif %}</p>
+                        <button id="donateNowButton" class="btn btn-primary">{% if get_locale() == 'zh' %}立即赞助{% else %}Donate Now{% endif %}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1744811073515831"
-     crossorigin="anonymous"></script>
-<!-- 八字 -->
-<ins class="adsbygoogle"
-     style="display:block"
+<amp-ad width="100vw" height="320"
+     type="adsense"
      data-ad-client="ca-pub-1744811073515831"
      data-ad-slot="4117331640"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+     data-auto-format="rspv"
+     data-full-width="">
+  <div overflow=""></div>
+</amp-ad>
 
 
     <div class="modal fade" id="modalBazi" tabindex="-1" aria-labelledby="modalTitleLabel_Bazi" aria-hidden="true">
@@ -189,6 +209,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+        <footer class="text-center py-3">
+            <a href="/privacy-policy" class="text-white">{% if get_locale() == 'zh' %}隐私政策{% else %}Privacy Policy{% endif %}</a>
+        </footer>
     </div>
 
     <script>
