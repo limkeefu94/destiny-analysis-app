@@ -472,6 +472,28 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBaziButton.style.display = 'block';
             aiButton.disabled = false; // 重新启用五行精灵按钮
         });
+
+                // ==== 在这里插入 AdSense 广告 ====
+                if (adsenseContainer) {
+                    // 清空旧广告，防止重复加载
+                    adsenseContainer.innerHTML = '';
+
+                    // 创建 ins 元素
+                    const ins = document.createElement('ins');
+                    ins.className = 'adsbygoogle';
+                    ins.style.display = 'block';
+                    ins.setAttribute('data-ad-client', 'ca-pub-1744811073515831');
+                    ins.setAttribute('data-ad-slot', '4117331640'); // 确保这是您的广告位ID
+                    ins.setAttribute('data-ad-format', 'auto');
+                    ins.setAttribute('data-full-width-responsive', 'true');
+
+                    adsenseContainer.appendChild(ins);
+
+                    // 推动广告
+                    // 检查 adsbygoogle 数组是否存在，如果不存在则初始化
+                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+                    console.log('AdSense ad pushed after analysis results.');
+                }
     } else {
         console.error("clearUserDataButton not found in the DOM");
     }
