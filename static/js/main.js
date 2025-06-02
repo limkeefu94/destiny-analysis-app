@@ -308,6 +308,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error("Error setting sprite image:", error);
                     aiButtonContainer.style.display = 'block';
                 }
+
+                if (adsenseContainer) {
+                    adsenseContainer.innerHTML = '';
+                    const ins = document.createElement('ins');
+                    ins.className = 'adsbygoogle';
+                    ins.style.display = 'block';
+                    ins.setAttribute('data-ad-client', 'ca-pub-1744811073515831');
+                    ins.setAttribute('data-ad-slot', '4117331640'); // 确保这是您的广告位ID
+                    ins.setAttribute('data-ad-format', 'auto');
+                    ins.setAttribute('data-full-width-responsive', 'true');
+                    adsenseContainer.appendChild(ins);
+                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+                    console.log('AdSense ad pushed after analysis results.');
+                }
+
             } else {
                 grid.innerHTML = `<p class='text-danger text-center'>${t('baziError')}${data.error || t('unableToParse')}</p>`;
                 submitBaziButton.style.display = 'block';
@@ -474,21 +489,6 @@ document.addEventListener('DOMContentLoaded', () => {
             aiButton.disabled = false; // 重新启用五行精灵按钮
         });
 
-    if (adsenseContainer) {
-            adsenseContainer.innerHTML = '';
-            const ins = document.createElement('ins');
-            ins.className = 'adsbygoogle';
-            ins.style.display = 'block';
-            ins.setAttribute('data-ad-client', 'ca-pub-1744811073515831');
-            ins.setAttribute('data-ad-slot', '4117331640'); // 确保这是您的广告位ID
-            ins.setAttribute('data-ad-format', 'auto');
-            ins.setAttribute('data-full-width-responsive', 'true');
-
-            adsenseContainer.appendChild(ins);
-
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
-            console.log('AdSense ad pushed after analysis results.');
-        }
     } else {
         console.error("clearUserDataButton not found in the DOM");
     }
