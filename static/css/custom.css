@@ -39,12 +39,12 @@ body {
     top: -50px;
     font-size: clamp(15px, 2vw, 20px);
     opacity: 0.7;
-    animation-name: fall;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
     -webkit-animation-name: fall;
     -webkit-animation-timing-function: linear;
     -webkit-animation-iteration-count: infinite;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
     font-family: Arial, sans-serif;
     color: #fff;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -53,12 +53,12 @@ body {
 
 /* 子元素应用 sway 动画 */
 .sway-container {
-    animation-name: sway;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
     -webkit-animation-name: sway;
     -webkit-animation-timing-function: linear;
     -webkit-animation-iteration-count: infinite;
+    animation-name: sway;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 /* 飘落动画 */
